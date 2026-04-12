@@ -5,7 +5,9 @@ const MyNavBar = () => {
     <>
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">Mega E-commerce</Navbar.Brand>
+          <Navbar.Brand href="/">
+            <img src="/logo.png" alt="Mega E-commerce" style={{ width: '100px', height: 'auto' }} />
+          </Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#features">Features</Nav.Link>
