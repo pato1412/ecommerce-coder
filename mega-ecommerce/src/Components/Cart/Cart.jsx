@@ -4,7 +4,7 @@ import { useCart } from '../../Contexts/CartContext'
 import CartItem from '../CartItem/CartItem'
 
 const Cart = () => {
-    const { Cart } = useCart();
+    const { Cart, clearCart } = useCart();
     const total = Cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
     console.log(total)
 
@@ -18,7 +18,9 @@ const Cart = () => {
       ))}
       <h3 style={{ textAlign: "center" }}>Total: $ {total}</h3>
       <div className="d-flex justify-content-center ">
-        <button className="btn btn-warning">Limpiar Carrito</button>
+        <button className="btn btn-warning" onClick={clearCart} >
+          Limpiar Carrito
+        </button>
         <Link to="/checkout" className="btn btn-info">
           Checkout
         </Link>

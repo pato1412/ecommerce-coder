@@ -35,11 +35,16 @@ export function CartProvider({children}) {
         setCart(Cart.filter(product => product.id !== id))
     }
 
+    const clearCart = () => {
+        setCart([]);
+    }
+
     const value = {
         Cart,
         setCart,
         addProduct,
         removeProduct,
+        clearCart,
         categoryId,
         setCategory            
     }
