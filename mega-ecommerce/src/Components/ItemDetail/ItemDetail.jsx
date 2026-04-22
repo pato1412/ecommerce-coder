@@ -1,3 +1,5 @@
+import { useCart } from "../../Contexts/CartContext"
+
 
 function ItemDetail({ product }) {
   if (!product) {
@@ -6,6 +8,12 @@ function ItemDetail({ product }) {
 
   const inStock = product.stock > 0
   const priceLabel = `$${product.price}`
+  const { addProducto } = useCart()
+
+  const handleAdd = (item) => {
+    //console.log("Agregando al carrito", item) 
+    addProducto(item)
+  }
 
   return (
     <section className='detail'>
@@ -21,7 +29,7 @@ function ItemDetail({ product }) {
         </p>
         <p className='detail__description'>{product.description}</p>
         <div className='detail__actions'>
-          <button className='detail__cta' disabled={!inStock}>
+          <button className='detail__cta' disabled={!inStock} onClick={() => handleAdd(product)}> 
             {inStock ? "Agregar al carrito" : "No disponible"}
           </button>
         </div>

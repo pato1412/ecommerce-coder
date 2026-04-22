@@ -1,4 +1,5 @@
 import { Container, Nav, Navbar } from 'react-bootstrap'
+import CardWidget from '../CardWidget/CardWidget'
 
 const MyNavBar = () => {
   return (
@@ -12,6 +13,9 @@ const MyNavBar = () => {
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#features">Features</Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
+          </Nav>
+          <Nav className="ml-auto"> 
+            <CardWidget />            
           </Nav>
         </Container>
       </Navbar>    
