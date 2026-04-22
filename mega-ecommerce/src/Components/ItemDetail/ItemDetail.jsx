@@ -8,11 +8,12 @@ function ItemDetail({ product }) {
 
   const inStock = product.stock > 0
   const priceLabel = `$${product.price}`
-  const { addProducto } = useCart()
+  const { addProduct } = useCart()
 
   const handleAdd = (item) => {
-    //console.log("Agregando al carrito", item) 
-    addProducto(item)
+    //console.log("Agregando al carrito", item)
+    alert(`Agregando al carrito: ${item.name}`) 
+    addProduct(item)
   }
 
   return (

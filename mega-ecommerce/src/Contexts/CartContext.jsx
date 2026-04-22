@@ -1,33 +1,51 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 const CartContext = createContext()
 
 
 export function CartProvider({children}) {
-    const [products, setProducts] = useState([])
+    const [Cart, setCart] = useState(() => {
+        try {
+            const savedCart = Cookies.get('cart');
+            return savedCart ? JSON.parse(savedCart) : [];
+        } catch (error) {
+            console.error('Error loading cart from cookie:', error);
+            return [];
+        }
+    })
     const [categoryId, setCategory] = useState(null)
 
-    const addProducto = (product) => {
-        setProducts([...products, product])
+    useEffect(() => {
+        Cookies.set('cart', JSON.stringify(Cart));
+    }, [Cart]);
+
+    const addProduct = (product) => {
+        /* 1. Verificar si el producto ya está en el carrito */
+        if (Cart.some(item => item.id === product.id)) {
+            setCart(Cart.map(item => item.id === product.id ? {...item, quantity: item.quantity + 1} : item))
+            return
+        }else { 
+            setCart([...Cart, {...product, quantity: 1}])
+        }
     }
 
     const removeProduct = (id) => {
-        setProducts(products.filter(product => product.id !== id))
-    }
-
-    const handleSelectProduct = (product) => {
-        console.log("Producto seleccionado", product)
+        setCart(Cart.filter(product => product.id !== id))
     }
 
     const value = {
-        products,
-        setProducts,
-        addProducto,
+        Cart,
+        setCart,
+        addProduct,
         removeProduct,
-        handleSelectProduct,
         categoryId,
         setCategory            
+    }
+
+    const getTotal = () => {
+        return Cart.reduce((total, product) => total + product.price * product.quantity, 0)
     }
 
     return (

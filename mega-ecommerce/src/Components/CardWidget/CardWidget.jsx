@@ -2,12 +2,14 @@ import React from 'react'
 import { Nav } from 'react-bootstrap'
 import { useCart } from '../../Contexts/CartContext'
 import { PiShoppingCart } from "react-icons/pi";
-
+import { Link } from 'react-router-dom'
 
 const CardWidget = () => {
-  const { products } = useCart()  
+  const { Cart } = useCart()  
   return (
-    <Nav.Link href="#cart"><PiShoppingCart /> Carrito ({products.length})</Nav.Link>
+    <Link to="/cart">
+        <PiShoppingCart /> Carrito ({Cart.length})
+    </Link>
   )
 }
 
