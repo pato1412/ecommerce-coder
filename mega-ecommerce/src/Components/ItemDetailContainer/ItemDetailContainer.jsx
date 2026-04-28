@@ -24,7 +24,7 @@ function ItemDetailContainer({ }) {
   }, [productId])
 
   return (
-    <section>
+    <div className='catalog mt-4'>
       {loading ? (
         <div className='status'>Cargando producto...</div>
       ) : product ? (
@@ -32,7 +32,7 @@ function ItemDetailContainer({ }) {
       ) : (
         <div className='status'>Producto no encontrado</div>
       )}
-    </section>
+    </div>
   )
 }
 
