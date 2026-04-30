@@ -5,9 +5,11 @@ import { useCart } from '../../Contexts/CartContext'
 import { useParams } from 'react-router-dom'
 import { useCategory } from '../../Contexts/CategoryContext'
 import { getCategories } from '../../services/firebase/firestore/Categories'
+import Loader from '../Loader/Loader'
 
 function ItemListContainer() {
     const [loading, setLoading] = useState(true)
+    const [MessageLoading, setMessageLoading] = useState('')
     const [products, setProducts] = useState([])
     const {Cart, setCart} = useCart();
     const {categoryId, setCategory, setCategories} = useCategory();
@@ -27,7 +29,7 @@ function ItemListContainer() {
 
     useEffect(()=>{
         setLoading(true)
-
+        setMessageLoading('Cargando productos...')
         // Obtener el categoryId de los parámetros de la URL     
         if (paramsCategoryId) {
             console.log("Category ID desde URL:", paramsCategoryId);
@@ -57,9 +59,9 @@ function ItemListContainer() {
       </header>
       {loading 
         ? (
-          <div className='status'>Cargando productos....</div>)
-        : products.length === 0 ? (
-          <div className='status'>No hay productos disponibles </div>
+          <Loader visible={loading} message={MessageLoading} />
+        ) : products.length === 0 ? (
+          <h4 className='status'>No hay productos disponibles </h4>
         ) : (
           <ItemList products={products} />
         )

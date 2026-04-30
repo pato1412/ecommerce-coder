@@ -18,7 +18,7 @@ function App() {
         <CartProvider>
           <CategoryProvider >
             <MyNavBar />
-            <Container>
+            <Container className='main-container mt-3 mb-3' style={{ minHeight: '70vh' }}>
               <Routes>
                 <Route path="/" element={<ItemListContainer />} />
                 <Route path="/category/:categoryId" element={<ItemListContainer />} />

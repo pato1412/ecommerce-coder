@@ -1,21 +1,28 @@
 import { Image, Row, Col, Badge } from "react-bootstrap"
 import { useCart } from "../../Contexts/CartContext"
 import "./ItemDetail.css"
+import { useState } from "react"
+import { Alert } from "react-bootstrap"
 
 function ItemDetail({ product }) {
   if (!product) {
     return null
   }
 
+  const [show, setShow] = useState(false);
   const inStock = product.stock > 0
   const priceLabel = `$${product.price}`
   const { addProduct } = useCart()
 
   const handleAdd = (item) => {
-    //console.log("Agregando al carrito", item)
-    alert(`Agregando al carrito: ${item.name}`) 
+    setShow(true); 
     addProduct(item)
+    setTimeout(() => {
+      setShow(false);
+    }, 4000);
   }
+
+
 
   return (
     <Row className="mb-4">
@@ -39,6 +46,11 @@ function ItemDetail({ product }) {
             </button>
           </div>     
         </div>
+        {show && (
+          <Alert className="mt-3" variant="success" onClose={() => setShow(false)} dismissible>
+            Producto agregado al carrito
+          </Alert>
+        )}
       </Col>
     </Row>
   )
