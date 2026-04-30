@@ -3,27 +3,43 @@ import { getProducts, getProductsByCategory } from '../../asyncMock'
 import ItemList from '../ItemList/ItemList'
 import { useCart } from '../../Contexts/CartContext'
 import { useParams } from 'react-router-dom'
+import { useCategory } from '../../Contexts/CategoryContext'
+import { getCategories } from '../../services/firebase/firestore/Categories'
 
 function ItemListContainer() {
     const [loading, setLoading] = useState(true)
     const [products, setProducts] = useState([])
-    const {Cart, setCart,  categoryId, setCategory} = useCart();
-    const params = useParams();
+    const {Cart, setCart} = useCart();
+    const {categoryId, setCategory, setCategories} = useCategory();
+    const paramsCategoryId = useParams().categoryId;
 
+    useEffect(()=>{
+      getCategories()
+        .then((res)=>{
+            //Obtengo el listado de categorías desde Firebase y lo guardo en el contexto para que esté disponible en toda la aplicación
+            console.log("Categorías obtenidas desde Firebase:", res);
+            setCategories(res);
+        })
+        .catch((err)=>{
+            console.log("Error al obtener las categorías", err);
+        });
+    }, []);
 
     useEffect(()=>{
         setLoading(true)
 
         // Obtener el categoryId de los parámetros de la URL     
-        if (params.categoryId) {
-            console.log("Category ID desde URL:", params.categoryId);
-            setCategory(params.categoryId)
+        if (paramsCategoryId) {
+            console.log("Category ID desde URL:", paramsCategoryId);
+            setCategory(paramsCategoryId)
+        }else{
+            // Si no hay categoryId en la URL, se resetea el estado de categoría en el contexto
+            setCategory(null)
         }
 
-        const asyncFunction = categoryId ? getProductsByCategory :  getProducts
-        asyncFunction(categoryId)  
+        const asyncFunction = paramsCategoryId ? getProductsByCategory :  getProducts
+        asyncFunction(paramsCategoryId)  
         .then((res)=>{
-            console.log(res)
             setProducts(res)
         })
         .catch((err)=>{
@@ -32,7 +48,7 @@ function ItemListContainer() {
         .finally(()=>{
             setLoading(false)
         })
-    },[categoryId])
+    },[paramsCategoryId])
 
     return (
     <section className='catalog'>

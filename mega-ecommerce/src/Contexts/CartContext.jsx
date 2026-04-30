@@ -4,7 +4,6 @@ import Cookies from 'js-cookie';
 
 const CartContext = createContext()
 
-
 export function CartProvider({children}) {
     const [Cart, setCart] = useState(() => {
         try {
@@ -15,7 +14,6 @@ export function CartProvider({children}) {
             return [];
         }
     })
-    const [categoryId, setCategory] = useState(null)
 
     useEffect(() => {
         Cookies.set('cart', JSON.stringify(Cart));
@@ -45,8 +43,6 @@ export function CartProvider({children}) {
         addProduct,
         removeProduct,
         clearCart,
-        categoryId,
-        setCategory            
     }
 
     const getTotal = () => {

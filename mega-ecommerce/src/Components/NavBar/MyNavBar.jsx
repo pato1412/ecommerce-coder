@@ -1,7 +1,11 @@
 import { Container, Nav, Navbar } from 'react-bootstrap'
 import CardWidget from '../CardWidget/CardWidget'
 import { Link } from 'react-router-dom'
+import { useCategory } from '../../Contexts/CategoryContext'
+
 const MyNavBar = () => {
+  const {categories } = useCategory();
+
   return (
     <>
       <Navbar bg="dark" data-bs-theme="dark">
@@ -12,9 +16,11 @@ const MyNavBar = () => {
             </Link>
           </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            {( categories.map((category) => (
+              <Nav.Link to={`/category/${category.categoryName}`} key={category.id} as={Link} >
+                  {category.categoryName}
+              </Nav.Link>
+            ))) } 
           </Nav>
           <Nav className="ml-auto"> 
             <CardWidget />            

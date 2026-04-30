@@ -1,7 +1,7 @@
 {
   "name": "mega-ecommerce",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
+    "firebase": "^12.12.1",
     "js-cookie": "^3.0.5",
     "react": "^19.2.4",
     "react-bootstrap": "^2.10.10",
