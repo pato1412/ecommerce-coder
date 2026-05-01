@@ -10,6 +10,7 @@ import Cart from './Components/Cart/Cart';
 import { CategoryProvider, useCategory } from './Contexts/CategoryContext';
 import { use, useEffect } from 'react';
 import Footer from './Components/Footer/Footer';
+import Checkout from './Components/Checkout/Checkout';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/category/:categoryId" element={<ItemListContainer />} />
                 <Route path="/detail/:productId" element={<ItemDetailContainer />}/>
                 <Route exact path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Container>

@@ -1,18 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../../Contexts/CartContext'
 import CartItem from '../CartItem/CartItem'
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Button } from 'react-bootstrap';
 
-const CartBar = (props) => {
-    console.log("Renderizando Cart con props:", props)
+const CartBar = ({show, handleClose}) => {      
     const { Cart, clearCart } = useCart();
     const total = Cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
-        
+    const navigate = useNavigate()    
+
+    const handleFinalizar = () => {
+      navigate("/checkout");
+      handleClose()
+    }
+
   return (
     <>
-      <Offcanvas show={props.show} onHide={props.handleClose}  placement="end">
+      <Offcanvas show={show} onHide={handleClose}  placement="end">
         {(Cart.length === 0) ? (
           <>
           <Offcanvas.Header closeButton>
@@ -34,7 +39,7 @@ const CartBar = (props) => {
               <Button variant="outline-secondary" onClick={clearCart} className="me-3"  >
                 Limpiar Carrito
               </Button>
-              <Button variant="outline-primary"  as={Link} to="/checkout">
+              <Button variant="outline-primary" onClick={handleFinalizar} >
                 Finalizar Compra
               </Button>
             </div>

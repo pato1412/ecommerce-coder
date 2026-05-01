@@ -1,8 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import Cookies from 'js-cookie';
 
-const CartContext = createContext()
+const CartContext = createContext();
 
 export function CartProvider({children}) {
     const [Cart, setCart] = useState(() => {
@@ -37,16 +36,17 @@ export function CartProvider({children}) {
         setCart([]);
     }
 
+    const getTotal = () => {
+        return Cart.reduce((total, product) => total + product.price * product.quantity, 0)
+    }
+
     const value = {
         Cart,
         setCart,
         addProduct,
         removeProduct,
         clearCart,
-    }
-
-    const getTotal = () => {
-        return Cart.reduce((total, product) => total + product.price * product.quantity, 0)
+        getTotal,
     }
 
     return (

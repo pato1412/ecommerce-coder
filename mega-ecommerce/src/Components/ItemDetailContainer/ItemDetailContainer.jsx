@@ -1,7 +1,7 @@
 import React, { use, useEffect, useState } from 'react'
-import { getProductoById } from '../../asyncMock'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import { useParams } from 'react-router-dom'
+import { getProductById } from '../../services/firebase/firestore/Products'
 
 function ItemDetailContainer({ }) {
   const [product, setProduct] = useState(null)
@@ -10,7 +10,7 @@ function ItemDetailContainer({ }) {
 
   useEffect(() => {
     setLoading(true)
-    getProductoById(productId)
+    getProductById(productId)
       .then((res) => {
         setProduct(res || null)
       })

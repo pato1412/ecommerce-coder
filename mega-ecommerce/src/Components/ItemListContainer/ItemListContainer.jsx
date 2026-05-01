@@ -1,11 +1,11 @@
 import React, { use, useEffect, useState } from 'react'
-import { getProducts, getProductsByCategory } from '../../asyncMock'
 import ItemList from '../ItemList/ItemList'
 import { useCart } from '../../Contexts/CartContext'
 import { useParams } from 'react-router-dom'
 import { useCategory } from '../../Contexts/CategoryContext'
 import { getCategories } from '../../services/firebase/firestore/Categories'
 import Loader from '../Loader/Loader'
+import { getProducts, getProductsByCategory } from '../../services/firebase/firestore/Products'
 
 function ItemListContainer() {
     const [loading, setLoading] = useState(true)
