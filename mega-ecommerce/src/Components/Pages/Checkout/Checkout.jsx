@@ -1,9 +1,9 @@
-import { useCart } from '../../Contexts/CartContext'
+import { useCart } from '../../../Contexts/CartContext'
 import { collection, getDocs, query, where, documentId, writeBatch, addDoc } from "firebase/firestore"
-import { db } from '../../services/firebase'
+import { db } from '../../../services/firebase'
 
 import { useRef, useState } from 'react'
-import Loader from '../Loader/Loader'
+import Loader from '../../Layout/Loader/Loader'
 import { Alert, Button, Col, Form, FormGroup, Row } from 'react-bootstrap'
 
 const Checkout = () => {

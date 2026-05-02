@@ -1,7 +1,7 @@
 import { Container, Nav, Navbar } from 'react-bootstrap'
-import CardWidget from '../CardWidget/CardWidget'
+import CartWidget from '../../Cart/CartWidget/CartWidget'
 import { Link } from 'react-router-dom'
-import { useCategory } from '../../Contexts/CategoryContext'
+import { useCategory } from '../../../Contexts/CategoryContext'
 
 const MyNavBar = () => {
   const {categories } = useCategory();
@@ -23,7 +23,7 @@ const MyNavBar = () => {
             ))) } 
           </Nav>
           <Nav className="ml-auto"> 
-            <CardWidget />            
+            <CartWidget />            
           </Nav>
         </Container>
       </Navbar>    

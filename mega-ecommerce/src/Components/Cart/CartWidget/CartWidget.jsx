@@ -1,12 +1,12 @@
 import React from 'react'
 import { Nav, Badge, Button } from 'react-bootstrap'
-import { useCart } from '../../Contexts/CartContext'
+import { useCart } from '../../../Contexts/CartContext';
 import { PiShoppingCart } from "react-icons/pi";
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
-import CartBar from '../Cart/Cart';
+import CartBar from '../CartBar/CartBar';
 
-const CardWidget = () => {
+const CartWidget = () => {
   const { Cart } = useCart()  
   const [show, setShow] = useState(false);
 
@@ -28,4 +28,4 @@ const CardWidget = () => {
   )
 }
 
-export default CardWidget
+export default CartWidget

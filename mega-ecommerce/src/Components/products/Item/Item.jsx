@@ -1,5 +1,5 @@
 import { Card, Button } from "react-bootstrap"
-import { useCart } from "../../Contexts/CartContext"
+import { useCart } from "../../../Contexts/CartContext"
 import { Link } from "react-router-dom";
 
 function Item({ product}) {

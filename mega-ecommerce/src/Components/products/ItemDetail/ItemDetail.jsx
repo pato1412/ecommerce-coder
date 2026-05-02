@@ -1,5 +1,5 @@
 import { Image, Row, Col, Badge } from "react-bootstrap"
-import { useCart } from "../../Contexts/CartContext"
+import { useCart } from "../../../Contexts/CartContext"
 import "./ItemDetail.css"
 import { useState } from "react"
 import { Alert } from "react-bootstrap"

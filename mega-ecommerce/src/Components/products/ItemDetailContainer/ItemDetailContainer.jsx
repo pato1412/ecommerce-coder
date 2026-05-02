@@ -1,7 +1,8 @@
 import React, { use, useEffect, useState } from 'react'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import { useParams } from 'react-router-dom'
-import { getProductById } from '../../services/firebase/firestore/Products'
+import { getProductById } from '../../../services/firebase/firestore/Products'
+import Loader from '../../Layout/Loader/Loader'
 
 function ItemDetailContainer({ }) {
   const [product, setProduct] = useState(null)
@@ -26,7 +27,7 @@ function ItemDetailContainer({ }) {
   return (
     <div className='catalog mt-4'>
       {loading ? (
-        <div className='status'>Cargando producto...</div>
+        <Loader visible={loading} message="Cargando detalle" /> 
       ) : product ? (
         <ItemDetail product={product} />
       ) : (

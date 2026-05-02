@@ -1,16 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MyNavBar from './Components/NavBar/MyNavBar';
+import MyNavBar from './Components/Layout/NavBar/MyNavBar';
 import { Container } from 'react-bootstrap';
-import ItemListContainer from './Components/ItemListContainer/ItemListContainer';
+import ItemListContainer from './Components/products/ItemListContainer/ItemListContainer';
 import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
 import { CartProvider } from './Contexts/CartContext';
-import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
-import NotFound from './Components/NotFound/NotFound';
-import Cart from './Components/Cart/Cart';
+import ItemDetailContainer from './Components/products/ItemDetailContainer/ItemDetailContainer';
+import NotFound from './Components/Pages/NotFound/NotFound';
 import { CategoryProvider, useCategory } from './Contexts/CategoryContext';
 import { use, useEffect } from 'react';
-import Footer from './Components/Footer/Footer';
-import Checkout from './Components/Checkout/Checkout';
+import Footer from './Components/Layout/Footer/Footer';
+import Checkout from './Components/Pages/Checkout/Checkout';
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
                 <Route path="/" element={<ItemListContainer />} />
                 <Route path="/category/:categoryId" element={<ItemListContainer />} />
                 <Route path="/detail/:productId" element={<ItemDetailContainer />}/>
-                <Route exact path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

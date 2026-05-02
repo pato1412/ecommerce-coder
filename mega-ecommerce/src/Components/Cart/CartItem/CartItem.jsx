@@ -1,5 +1,5 @@
 import React from 'react'
-import { useCart } from "../../Contexts/CartContext"
+import { useCart } from "../../../Contexts/CartContext"
 import { Button, Col, Row } from 'react-bootstrap';
 import { FaTrash } from 'react-icons/fa';
 

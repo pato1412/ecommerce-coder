@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useCart } from '../../Contexts/CartContext'
+import { useCart } from '../../../Contexts/CartContext'
 import CartItem from '../CartItem/CartItem'
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Button } from 'react-bootstrap';
